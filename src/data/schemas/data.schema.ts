@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
+import { RowInterface } from "../interfaces/row.interface";
 
 export interface Series {
     [key: string]: number;
@@ -7,8 +8,11 @@ export interface Series {
 
 export type RowDocument = Row & Document;
 
-@Schema()
-export class Row {
+@Schema({ timestamps: true })
+export class Row implements RowInterface {
+    @Prop()
+    row?: number;
+    
     @Prop()
     country?: string;
 

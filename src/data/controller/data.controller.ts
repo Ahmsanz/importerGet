@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { PaginationInterface } from '../interfaces/pagination.interface';
 import { QueryParamsInterface } from '../interfaces/queryParams.interface';
-import { Row } from '../schemas/data.schema';
+import { RowInterface } from '../interfaces/row.interface';
 import { DataService } from '../service/data.service';
 
 @Controller('data')
@@ -16,7 +16,7 @@ export class DataController {
         @Query('sector') sector?: string,
         @Query('limit') limit?: string,
         @Query('page') page?: string,        
-    ): Promise<Row[]> {
+    ): Promise<RowInterface[]> {
         let queryParams: QueryParamsInterface = {}
         if (country) queryParams.country = country;
         if (sector) queryParams.sector = sector;
